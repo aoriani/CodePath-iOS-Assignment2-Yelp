@@ -1,0 +1,22 @@
+{
+  "name": "ELCodable",
+  "version": "0.0.1",
+  "summary": "A data model decoding/encoding framework for Swift.",
+  "description": "A data model decoding/encoding framework for Swift. Inspired by Anviking's Decodable",
+  "homepage": "https://github.com/Electrode-iOS/ELCodable",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Brandon Sneed": "brandon@redf.net"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/aoriani/ELCodable.git",
+    "commit": "dc83d9ffff085cf886941a45e29e2dec3298cff6"
+  },
+  "source_files": "ELCodable/*.{h,m,swift}"
+}

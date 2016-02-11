@@ -1,0 +1,6 @@
+framework module ELCodable {
+  umbrella header "ELCodable-umbrella.h"
+
+  export *
+  module * { export * }
+}
