@@ -8,14 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BusinessViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+    
+    var dataSource: BusinessDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        YelpService.sharedInstance.newRequest().execute( {
-            (result) in print(result.businesses.count)
+        dataSource = BusinessDataSource(forTable: tableView)
+
+        YelpService.sharedInstance.newRequest().execute({
+            result in self.dataSource.items = result.businesses
         })
+        
     }
 
     override func didReceiveMemoryWarning() {

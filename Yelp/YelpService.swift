@@ -65,7 +65,7 @@ class YelpService: BDBOAuth1RequestOperationManager {
             return self
         }
         
-        func execute(onSuccess: (QueryResult) -> Void, onFailure: () -> Void = {}) -> NetTask {
+        func execute(onSuccess: (SearchResults) -> Void, onFailure: () -> Void = {}) -> NetTask {
             return YelpService.sharedInstance.doRequest(self, onSuccess: onSuccess, onFailure: onFailure)
         }
         
@@ -96,17 +96,17 @@ class YelpService: BDBOAuth1RequestOperationManager {
         return RequestBuilder()
     }
 
-    private func doRequest(request: RequestBuilder, onSuccess: (QueryResult) -> Void, onFailure: () -> Void) -> NetTask {
+    private func doRequest(request: RequestBuilder, onSuccess: (SearchResults) -> Void, onFailure: () -> Void) -> NetTask {
         return GET("search", parameters: request.parameters,
-                success: { (_ , response) in
-                    do {
-                        let json = JSON(response)
-                        let result = try QueryResult.decode(json)
-                        onSuccess(result)
-                    } catch {
-                        onFailure()
-                    }
-                },
-                failure:{ (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in onFailure()})!
+            success: { (_ , response) in
+                do {
+                    let json = JSON(response)
+                    let result = try SearchResults.decode(json)
+                    onSuccess(result)
+                } catch {
+                    onFailure()
+                }
+            },
+            failure:{ (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in onFailure()})!
     }
 }
