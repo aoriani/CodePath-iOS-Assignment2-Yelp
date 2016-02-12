@@ -23,7 +23,8 @@ class YelpService: BDBOAuth1RequestOperationManager {
         private var parameters = [String : AnyObject]()
         private init() {
             //Location is required, setting default to SF
-            parameters["ll"] = "37.785771,-122.406165"
+            let lastKnowLocation = LocationManager.sharedInstance.getLastKnownLocation()
+            parameters["ll"] = String(format: "%0.6f,%0.6f", lastKnowLocation.lat, lastKnowLocation.lon)
         }
         
         func searchTerm(term: String) -> RequestBuilder {
