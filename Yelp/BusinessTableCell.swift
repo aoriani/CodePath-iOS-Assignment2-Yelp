@@ -25,6 +25,11 @@ class BusinessTableCell: UITableViewCell {
         super.awakeFromNib()
         businessImageView.layer.cornerRadius = 5
         businessImageView.clipsToBounds = true
+//        businessImageView.layer.shadowColor = UIColor.blackColor().CGColor
+//        businessImageView.layer.shadowOpacity = 0.75
+//        businessImageView.layer.shadowRadius = 3.0
+//        businessImageView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

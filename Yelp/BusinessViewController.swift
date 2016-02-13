@@ -17,9 +17,12 @@ class BusinessViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         dataSource = BusinessDataSource(forTable: tableView)
 
-        YelpService.sharedInstance.newRequest().execute({
+        YelpService.sharedInstance.newRequest().searchTerm("american").execute({
             result in self.dataSource.items = result.businesses
         })
         
