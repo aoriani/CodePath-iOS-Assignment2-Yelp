@@ -114,6 +114,38 @@
                                             <outlet property="reviewCountLabel" destination="d4d-B9-XC8" id="xBs-Pu-ZZ6"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyErrorCell" rowHeight="220" id="qBr-RO-X6z">
+                                        <rect key="frame" x="0.0" y="131" width="600" height="220"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qBr-RO-X6z" id="XT2-BR-0Z0">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="219"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-Fz-dL1">
+                                                    <rect key="frame" x="276" y="32" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="Dqy-SZ-JHp"/>
+                                                        <constraint firstAttribute="width" constant="48" id="NC2-0I-50M"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Sorry. We could not find results for your search. Our lemurs are working hard so you can get lucky on the next time !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViB-79-grK">
+                                                    <rect key="frame" x="43" y="98" width="514" height="93"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pFS-Fz-dL1" firstAttribute="centerX" secondItem="XT2-BR-0Z0" secondAttribute="centerX" id="07a-ln-6Bf"/>
+                                                <constraint firstItem="ViB-79-grK" firstAttribute="centerX" secondItem="XT2-BR-0Z0" secondAttribute="centerX" id="3rg-e4-nnN"/>
+                                                <constraint firstItem="ViB-79-grK" firstAttribute="top" secondItem="pFS-Fz-dL1" secondAttribute="bottom" constant="18" id="6yk-kA-6wq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ViB-79-grK" secondAttribute="bottom" constant="20" id="KDE-0x-ODq"/>
+                                                <constraint firstItem="pFS-Fz-dL1" firstAttribute="top" secondItem="XT2-BR-0Z0" secondAttribute="topMargin" constant="24" id="de0-zn-258"/>
+                                                <constraint firstItem="ViB-79-grK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XT2-BR-0Z0" secondAttribute="leadingMargin" constant="10" id="xAk-uU-DbC"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ViB-79-grK" secondAttribute="trailing" constant="10" id="zmK-8D-NoY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -172,6 +204,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="error" width="48" height="48"/>
         <image name="filter" width="24" height="24"/>
     </resources>
 </document>

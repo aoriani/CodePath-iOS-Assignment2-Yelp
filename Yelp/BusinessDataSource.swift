@@ -12,28 +12,36 @@ import UIKit
 class BusinessDataSource:NSObject, UITableViewDataSource {
     
     private var tableView: UITableView
-    var items:[Business] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var items:[Business] = []
+    private var wasDataSourceSet = false
     
     init(forTable tableView: UITableView) {
         self.tableView = tableView
         super.init()
+    }
+    
+    func setItems(items: [Business]) {
         
-        self.tableView.dataSource = self
+        if (!wasDataSourceSet) {
+            self.tableView.dataSource = self
+            wasDataSourceSet = true
+        }
+        
+        self.items = items
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: No results cell
-        return items.count
+        return items.isEmpty ? 1: items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //TODO: No results cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("businessCell", forIndexPath: indexPath) as! BusinessTableCell
-        cell.populate(items[indexPath.row])
-        return cell
+        if (!items.isEmpty) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("businessCell", forIndexPath: indexPath) as! BusinessTableCell
+            cell.populate(items[indexPath.row])
+            return cell
+        } else {
+            return tableView.dequeueReusableCellWithIdentifier("emptyErrorCell")!
+        }
     }
 }

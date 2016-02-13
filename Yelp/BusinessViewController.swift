@@ -10,13 +10,12 @@ import UIKit
 import CoreLocation
 import MBProgressHUD
 
-class BusinessViewController: UIViewController, UISearchBarDelegate {
+class BusinessViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var dataSource: BusinessDataSource!
     var currentSearchTask: NetTask?
-    var progressDialog: MBProgressHUD!
     let defaultSearchTerm = "churrasco"
     let searchBar = UISearchBar()
 
@@ -25,13 +24,10 @@ class BusinessViewController: UIViewController, UISearchBarDelegate {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        tableView.delegate = self
         dataSource = BusinessDataSource(forTable: tableView)
         
-        progressDialog = MBProgressHUD.showHUDAddedTo(tableView, animated: true)
-        progressDialog.labelText = "Searching..."
-        progressDialog.color = UIColor.redColor()
-        
-        
+    
         searchBar.sizeToFit()
         searchBar.text = defaultSearchTerm
         searchBar.delegate = self
@@ -43,24 +39,21 @@ class BusinessViewController: UIViewController, UISearchBarDelegate {
     @IBAction func onTapOutside(sender: AnyObject) {
         searchBar.resignFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func performSearch(searchTerm: String) {
         currentSearchTask?.cancel()
+        let progressDialog = MBProgressHUD.showHUDAddedTo(tableView, animated: true)
+        progressDialog.color = UIColor.redColor()
         progressDialog.labelText = "Searching \(searchTerm)..."
         progressDialog.show(true)
         currentSearchTask = YelpService.sharedInstance.newRequest().searchTerm(searchTerm).execute(onSuccess: {
                 result in
-                    self.progressDialog.hide(true)
-                    self.dataSource.items = result.businesses
+                    progressDialog.hide(true)
+                    self.dataSource.setItems(result.businesses)
             },
             onFailure: {
-                self.progressDialog.hide(true)
-                self.dataSource.items = []
+                progressDialog.hide(true)
+                self.dataSource.setItems([])
             }
         )
         
@@ -73,6 +66,10 @@ class BusinessViewController: UIViewController, UISearchBarDelegate {
                 performSearch(searchTerm)
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
 
