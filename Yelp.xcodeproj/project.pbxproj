@@ -19,6 +19,7 @@
 		99EE95F31C6DBD42002CF71E /* BusinessTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE95F21C6DBD42002CF71E /* BusinessTableCell.swift */; };
 		99EE95F81C6DD677002CF71E /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE95F71C6DD677002CF71E /* UIImageView+Loading.swift */; };
 		99EE95FB1C6DE893002CF71E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE95FA1C6DE893002CF71E /* LocationManager.swift */; };
+		99EE95FE1C6F2DD9002CF71E /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE95FD1C6F2DD9002CF71E /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		99EE95F21C6DBD42002CF71E /* BusinessTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessTableCell.swift; sourceTree = "<group>"; };
 		99EE95F71C6DD677002CF71E /* UIImageView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loading.swift"; sourceTree = "<group>"; };
 		99EE95FA1C6DE893002CF71E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		99EE95FD1C6F2DD9002CF71E /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		99E66AD71C6C715B00AA35B0 /* Yelp */ = {
 			isa = PBXGroup;
 			children = (
+				99EE95FC1C6F2DC7002CF71E /* Utils */,
 				99EE95F91C6DE861002CF71E /* Location */,
 				99EE95F61C6DC19A002CF71E /* StoryBoards */,
 				99EE95F51C6DC17E002CF71E /* ViewControllers */,
@@ -144,6 +147,14 @@
 				99EE95FA1C6DE893002CF71E /* LocationManager.swift */,
 			);
 			name = Location;
+			sourceTree = "<group>";
+		};
+		99EE95FC1C6F2DC7002CF71E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				99EE95FD1C6F2DD9002CF71E /* StringExtensions.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		BB01ECE1AFA7AC0D515401C7 /* Frameworks */ = {
@@ -280,6 +291,7 @@
 				99EE95F81C6DD677002CF71E /* UIImageView+Loading.swift in Sources */,
 				99EE95F31C6DBD42002CF71E /* BusinessTableCell.swift in Sources */,
 				99E66ADB1C6C715B00AA35B0 /* BusinessViewController.swift in Sources */,
+				99EE95FE1C6F2DD9002CF71E /* StringExtensions.swift in Sources */,
 				99E66AD91C6C715B00AA35B0 /* AppDelegate.swift in Sources */,
 				99EE95FB1C6DE893002CF71E /* LocationManager.swift in Sources */,
 				99E66AEF1C6C9DB100AA35B0 /* SearchResults.swift in Sources */,

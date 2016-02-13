@@ -39,6 +39,9 @@ class BusinessTableCell: UITableViewCell {
     }
     
     func populate(business: Business) {
+        businessImageView.image = nil
+        ratingImageView.image = nil
+        
         businessImageView.fadedSetImageWithUrl(NSURL(string: business.imageUrl)!)
         ratingImageView.fadedSetImageWithUrl(NSURL(string: business.ratingImageURL)!)
         categoryLabel.text = business.categories
