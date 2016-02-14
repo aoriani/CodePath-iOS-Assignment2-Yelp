@@ -81,10 +81,10 @@ class YelpService: BDBOAuth1RequestOperationManager {
     
     
     //OAuth 1
-    private static let consumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
-    private static let consumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
-    private static let accessToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
-    private static let accessSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+    private static let consumerKey = "Wc5WwNLIjWTqZaPNCcaZ6Q"
+    private static let consumerSecret = "k70kHetPYrDzBSo7qKH0wS2zM-g"
+    private static let accessToken = "5K6fLrsUTQzOnJ_aosjZp32QwaCYomYJ"
+    private static let accessSecret = "NGu_EKZHzjdyvV3vIDwXRhQGYf8"
     private static let baseUrl = NSURL(string: "https://api.yelp.com/v2/")
     
     //Thread safe singleton in Swift 2 (http://krakendev.io/blog/the-right-way-to-write-a-singleton)

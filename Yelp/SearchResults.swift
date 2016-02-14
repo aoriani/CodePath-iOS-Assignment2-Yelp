@@ -33,6 +33,9 @@ struct Business: Decodable {
     var distanceMeters: Decimal?
     var categories: String
     var location: Location
+    var phoneNumber: String?
+    var snippetImageURL: String
+    var snippetText: String
     
     var distanceMiles:NSDecimalNumber? {
         return distanceMeters != nil ? toMiles(fromMeters: distanceMeters!.value): nil
@@ -46,7 +49,11 @@ struct Business: Decodable {
             ratingImageURL: json ==> "rating_img_url_large",
             distanceMeters: json ==> "distance",
             categories: manuallyDecodeCategories(json!),
-            location: json ==> "location"
+            location: json ==> "location",
+            phoneNumber: json ==> "display_phone",
+            snippetImageURL:json ==> "snippet_image_url",
+            snippetText: json ==> "snippet_text"
+            
         )
     }
     
