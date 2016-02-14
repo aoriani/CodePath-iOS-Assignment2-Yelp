@@ -35,7 +35,7 @@ struct Business: Decodable {
     var location: Location
     
     var distanceMiles:NSDecimalNumber? {
-        return distanceMeters != nil ? distanceMeters!.value.decimalNumberByMultiplyingBy(0.000621371): nil
+        return distanceMeters != nil ? toMiles(fromMeters: distanceMeters!.value): nil
     }
 
     static func decode(json: JSON?) throws -> Business {

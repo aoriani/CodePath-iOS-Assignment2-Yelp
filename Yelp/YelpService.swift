@@ -15,10 +15,6 @@ typealias NetTask = AFHTTPRequestOperation
 
 class YelpService: BDBOAuth1RequestOperationManager {
     
-    enum SortMode: Int {
-        case BestMatched = 0, Distance, HighestRated
-    }
-    
     class RequestBuilder {
         private var parameters = [String : AnyObject]()
         private init() {
@@ -34,7 +30,7 @@ class YelpService: BDBOAuth1RequestOperationManager {
             return self
         }
         
-        func sort(mode: SortMode) -> RequestBuilder {
+        func sort(mode: YelpConsts.SortMode) -> RequestBuilder {
             parameters["sort"] = mode.rawValue
             return self
         }
@@ -47,22 +43,28 @@ class YelpService: BDBOAuth1RequestOperationManager {
         func categories(categories: [String]) -> RequestBuilder {
             if categories.count > 0 {
                 parameters["category_filter"] = categories.joinWithSeparator(",")
+            } else {
+                parameters.removeValueForKey("category_filter")
             }
             return self
         }
         
-        func limit(limit: UInt) -> RequestBuilder {
+        func limit(limit: Int) -> RequestBuilder {
             parameters["limit"] = limit
             return self
         }
         
-        func offset(offset: UInt) -> RequestBuilder {
+        func offset(offset: Int) -> RequestBuilder {
             parameters["offset"] = offset
             return self
         }
         
-        func radiusMeter(radius: UInt) -> RequestBuilder {
-            parameters["radius_filter"] = radius
+        func radiusMeter(radius: Int) -> RequestBuilder {
+            if radius > 0 {
+                parameters["radius_filter"] = radius
+            } else {
+                parameters.removeValueForKey("radius_filter")
+            }
             return self
         }
         
