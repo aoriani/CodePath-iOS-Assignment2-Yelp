@@ -26,6 +26,8 @@
 		99EE96061C7034A2002CF71E /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE96051C7034A2002CF71E /* FilterViewController.swift */; };
 		99EE96081C703CEB002CF71E /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE96071C703CEB002CF71E /* SettingsSwitchCell.swift */; };
 		99EE960A1C704BB2002CF71E /* SettingsDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE96091C704BB2002CF71E /* SettingsDropDownCell.swift */; };
+		99EE960D1C705865002CF71E /* FilterSectionControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE960C1C705865002CF71E /* FilterSectionControllers.swift */; };
+		99EE960F1C7076C8002CF71E /* FilterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE960E1C7076C8002CF71E /* FilterDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		99EE96051C7034A2002CF71E /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		99EE96071C703CEB002CF71E /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
 		99EE96091C704BB2002CF71E /* SettingsDropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDropDownCell.swift; sourceTree = "<group>"; };
+		99EE960C1C705865002CF71E /* FilterSectionControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSectionControllers.swift; sourceTree = "<group>"; };
+		99EE960E1C7076C8002CF71E /* FilterDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,10 +136,9 @@
 		99EE95F41C6DBD4B002CF71E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99EE960B1C7054E8002CF71E /* Filter */,
 				99EE95F21C6DBD42002CF71E /* BusinessTableCell.swift */,
 				99EE95F71C6DD677002CF71E /* UIImageView+Loading.swift */,
-				99EE96071C703CEB002CF71E /* SettingsSwitchCell.swift */,
-				99EE96091C704BB2002CF71E /* SettingsDropDownCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -173,6 +176,17 @@
 				99EE96011C701900002CF71E /* UnitConversions.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		99EE960B1C7054E8002CF71E /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				99EE96071C703CEB002CF71E /* SettingsSwitchCell.swift */,
+				99EE96091C704BB2002CF71E /* SettingsDropDownCell.swift */,
+				99EE960C1C705865002CF71E /* FilterSectionControllers.swift */,
+				99EE960E1C7076C8002CF71E /* FilterDataSource.swift */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		BB01ECE1AFA7AC0D515401C7 /* Frameworks */ = {
@@ -315,8 +329,10 @@
 				99EE96001C70156E002CF71E /* YelpConstants.swift in Sources */,
 				99EE95FB1C6DE893002CF71E /* LocationManager.swift in Sources */,
 				99EE960A1C704BB2002CF71E /* SettingsDropDownCell.swift in Sources */,
+				99EE960F1C7076C8002CF71E /* FilterDataSource.swift in Sources */,
 				99EE96061C7034A2002CF71E /* FilterViewController.swift in Sources */,
 				99E66AEF1C6C9DB100AA35B0 /* SearchResults.swift in Sources */,
+				99EE960D1C705865002CF71E /* FilterSectionControllers.swift in Sources */,
 				99EE95F11C6DBC1B002CF71E /* BusinessDataSource.swift in Sources */,
 				99EE96021C701900002CF71E /* UnitConversions.swift in Sources */,
 				99E66AEC1C6C77DD00AA35B0 /* YelpService.swift in Sources */,

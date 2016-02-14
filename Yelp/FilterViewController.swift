@@ -11,13 +11,15 @@ import UIKit
 class FilterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var filterDataSource: FilterDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
-
+        filterDataSource = FilterDataSource(forTable: tableView)
     }
 
     /*

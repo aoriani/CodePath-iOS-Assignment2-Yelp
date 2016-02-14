@@ -21,8 +21,9 @@ class BusinessDataSource:NSObject, UITableViewDataSource {
     }
     
     func setItems(items: [Business]) {
-        
         if (!wasDataSourceSet) {
+            // Delay setting the datasource so we don't show the 
+            // "No results" cell prior to the first query
             self.tableView.dataSource = self
             wasDataSourceSet = true
         }

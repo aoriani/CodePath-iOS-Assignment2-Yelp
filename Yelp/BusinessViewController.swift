@@ -11,7 +11,8 @@ import CoreLocation
 import MBProgressHUD
 
 class BusinessViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
-
+    
+    @IBOutlet var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var dataSource: BusinessDataSource!
@@ -30,6 +31,7 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
     
         searchBar.sizeToFit()
         searchBar.text = defaultSearchTerm
+        searchBar.placeholder = "e.g. Gnocchi, delivery, TGI Fridays"
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         
@@ -42,7 +44,7 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
     
     func performSearch(searchTerm: String) {
         currentSearchTask?.cancel()
-        let progressDialog = MBProgressHUD.showHUDAddedTo(tableView, animated: true)
+        let progressDialog = MBProgressHUD.showHUDAddedTo(topView, animated: true)
         progressDialog.color = UIColor.redColor()
         progressDialog.labelText = "Searching \(searchTerm)..."
         progressDialog.show(true)
@@ -71,7 +73,5 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
-
 }
 

@@ -171,6 +171,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Rdm-sw-E7j" id="Ni2-5C-Joq"/>
+                        <outlet property="topView" destination="8bC-Xf-vdC" id="pyb-ks-bN2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -233,18 +234,18 @@
                                             <outlet property="switchView" destination="FUm-vH-xcF" id="uFZ-fY-xav"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KmQ-ko-Szq" customClass="SettingsDropDownCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsDropDown" id="KmQ-ko-Szq" customClass="SettingsDropDownCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="90" width="600" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmQ-ko-Szq" id="y3F-7u-E1k">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" image="downTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="0RT-Vs-4Uk">
-                                                    <rect key="frame" x="537" y="15" width="32" height="32"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="downTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="0RT-Vs-4Uk">
+                                                    <rect key="frame" x="556" y="23" width="16" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="32" id="2WE-IX-fJx"/>
-                                                        <constraint firstAttribute="height" constant="32" id="svb-M8-L7q"/>
+                                                        <constraint firstAttribute="width" constant="16" id="2WE-IX-fJx"/>
+                                                        <constraint firstAttribute="height" constant="16" id="svb-M8-L7q"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdZ-Pp-84J">

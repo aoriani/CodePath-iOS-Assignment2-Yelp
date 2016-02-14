@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsDropDownCell: UITableViewCell {
     
-    let id = "settingsSwitch"
+    static let id = "settingsDropDown"
     
     enum State: String {
         case Collapsed = "downTriangle"
