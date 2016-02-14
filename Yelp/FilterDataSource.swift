@@ -9,18 +9,23 @@
 import Foundation
 import UIKit
 
-
-class FilterDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class FilterDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, SettingsSwitchCellDelegate {
     private let tableView: UITableView
     private let filterControllers: [FilterSectionControler]
+    private let dealsFilter = DealsFilterController()
+    private let distanceFilter = DistanceFilterController()
+    private let sortFilter = SortFilterController()
+    private let categoryFilter = CategoryFilterController()
     
-    init(forTable tableView: UITableView) {
+
+    init(forTable tableView: UITableView, withInitialFilter filterRecipe: FilterRecipe) {
         self.tableView = tableView
-        filterControllers = [DealsFilterController(), DistanceFilterController(), SortFilterController(), CategoryFilterController()]
+        filterControllers = [dealsFilter, distanceFilter, sortFilter, categoryFilter]
         super.init()
         
         for var filterController in filterControllers {
             filterController.tableView = self.tableView
+            filterController.applyStateFromRecipe(filterRecipe)
         }
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -39,12 +44,27 @@ class FilterDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return filterControllers[indexPath.section].getCellForPos(indexPath)
+        return filterControllers[indexPath.section].getCellForPos(indexPath, switchDelegate: self)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         filterControllers[indexPath.section].onTap(indexPath)
+    }
+    
+    func settingsSwitchCell(settingsSwitchCell: SettingsSwitchCell, didChangeValue: Bool) {
+        if let indexPath = tableView.indexPathForCell(settingsSwitchCell) {
+            filterControllers[indexPath.section].onSwitchChange(indexPath, isOn: didChangeValue)
+        }
+    }
+    
+    func getFilterRecipe() -> FilterRecipe {
+        let deals = dealsFilter.hasDeals
+        let distance = distanceFilter.selectedDistance
+        let sort = sortFilter.selectedSort
+        let categories = Array<String>(categoryFilter.selectedCategories)
+        
+        return FilterRecipe(deals: deals, distance: distance, sort: sort, categories: categories)
     }
 
 }

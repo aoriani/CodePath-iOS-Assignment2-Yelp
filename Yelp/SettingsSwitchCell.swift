@@ -8,12 +8,18 @@
 
 import UIKit
 
+@objc protocol SettingsSwitchCellDelegate {
+    optional func settingsSwitchCell(settingsSwitchCell: SettingsSwitchCell, didChangeValue: Bool)
+}
+
 class SettingsSwitchCell: UITableViewCell {
     
     static let id = "settingsSwitch"
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var switchView: UISwitch!
+    
+    weak var delegate:SettingsSwitchCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,9 +32,13 @@ class SettingsSwitchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populate(label labelText:String, isOn:Bool) {
+    func populate(label labelText:String, isOn:Bool, switchDelegate: SettingsSwitchCellDelegate?) {
         label.text = labelText
         switchView.setOn(isOn, animated: false)
+        delegate = switchDelegate
     }
 
+    @IBAction func onSwitchValueChanged(sender: AnyObject) {
+        delegate?.settingsSwitchCell?(self, didChangeValue: switchView.on)
+    }
 }

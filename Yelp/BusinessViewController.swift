@@ -10,16 +10,17 @@ import UIKit
 import CoreLocation
 import MBProgressHUD
 
-class BusinessViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
+class BusinessViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, FilterViewControllerDelegate {
     
     @IBOutlet var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    let searchBar = UISearchBar()
     
     var dataSource: BusinessDataSource!
     var currentSearchTask: NetTask?
-    let defaultSearchTerm = "churrasco"
-    let searchBar = UISearchBar()
-
+    var filterRecipe = FilterRecipe.emptyFilter
+    var searchTerm = "churrasco"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,25 +31,25 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
         
     
         searchBar.sizeToFit()
-        searchBar.text = defaultSearchTerm
+        searchBar.text = searchTerm
         searchBar.placeholder = "e.g. Gnocchi, delivery, TGI Fridays"
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         
-        performSearch(defaultSearchTerm)
+        performSearch()
     }
     
     @IBAction func onTapOutside(sender: AnyObject) {
         searchBar.resignFirstResponder()
     }
     
-    func performSearch(searchTerm: String) {
+    func performSearch() {
         currentSearchTask?.cancel()
         let progressDialog = MBProgressHUD.showHUDAddedTo(topView, animated: true)
         progressDialog.color = UIColor.redColor()
         progressDialog.labelText = "Searching \(searchTerm)..."
         progressDialog.show(true)
-        currentSearchTask = YelpService.sharedInstance.newRequest().searchTerm(searchTerm).execute(onSuccess: {
+        currentSearchTask = YelpService.sharedInstance.newRequest().searchTerm(searchTerm).filters(filterRecipe).execute(onSuccess: {
                 result in
                     progressDialog.hide(true)
                     self.dataSource.setItems(result.businesses)
@@ -65,7 +66,8 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
         if let searchTermFull = searchBar.text {
             let searchTerm = searchTermFull.trim()
             if !searchTerm.isEmpty {
-                performSearch(searchTerm)
+                self.searchTerm = searchTerm
+                performSearch()
             }
         }
     }
@@ -73,5 +75,22 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func filterViewController(filterViewController: FilterViewController, didFilterChange: FilterRecipe) {
+        self.filterRecipe = didFilterChange
+        performSearch()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let segueIdentifier = segue.identifier {
+            if segueIdentifier == "filterRoute" {
+                let navController = segue.destinationViewController as! UINavigationController
+                let filtersViewController = navController.topViewController as! FilterViewController
+                filtersViewController.delegate = self
+                filtersViewController.filterRecipe = filterRecipe
+            }
+        }
+    }
+
 }
 

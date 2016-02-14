@@ -13,9 +13,9 @@ protocol FilterSectionControler {
     var tableView: UITableView? {get set}
     var sectionName:String {get}
     
-    func stateFromRecipe(recipe: FilterRecipe)
+    func applyStateFromRecipe(recipe: FilterRecipe)
     func numberOfItems() -> Int
-    func getCellForPos(indexPath: NSIndexPath) -> UITableViewCell
+    func getCellForPos(indexPath: NSIndexPath, switchDelegate: SettingsSwitchCellDelegate?) -> UITableViewCell
     
     // Those methods could be optional, but only Objective-C protocols support optionals
     // Swift structs are not compatible with Objective-C, so this has to be a pure Swift protocol
@@ -30,7 +30,7 @@ class DealsFilterController: FilterSectionControler {
     //state 
     var hasDeals = false
     
-    func stateFromRecipe(recipe: FilterRecipe) {
+    func applyStateFromRecipe(recipe: FilterRecipe) {
         hasDeals = recipe.deals
     }
     
@@ -38,9 +38,9 @@ class DealsFilterController: FilterSectionControler {
         return 1
     }
     
-    func getCellForPos(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCellForPos(indexPath: NSIndexPath, switchDelegate: SettingsSwitchCellDelegate?) -> UITableViewCell {
         let cell = tableView?.dequeueReusableCellWithIdentifier(SettingsSwitchCell.id, forIndexPath: indexPath) as! SettingsSwitchCell
-        cell.populate(label: "Oferring a deal", isOn: hasDeals)
+        cell.populate(label: "Oferring a deal", isOn: hasDeals, switchDelegate: switchDelegate)
         return cell
     }
     
@@ -59,7 +59,7 @@ class DistanceFilterController: FilterSectionControler {
     var expanded = false
     var selectedDistance = YelpConsts.Distance.BestMatch
     
-    func stateFromRecipe(recipe: FilterRecipe) {
+    func applyStateFromRecipe(recipe: FilterRecipe) {
         selectedDistance = recipe.distance
     }
     
@@ -67,7 +67,7 @@ class DistanceFilterController: FilterSectionControler {
         return expanded ? YelpConsts.Distance.asArray.count : 1
     }
     
-    func getCellForPos(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCellForPos(indexPath: NSIndexPath, switchDelegate: SettingsSwitchCellDelegate?) -> UITableViewCell {
         let cell = tableView?.dequeueReusableCellWithIdentifier(SettingsDropDownCell.id, forIndexPath: indexPath) as! SettingsDropDownCell
         if !expanded {
             cell.populate(label: selectedDistance.toString(), state: SettingsDropDownCell.State.Collapsed)
@@ -100,7 +100,7 @@ class SortFilterController: FilterSectionControler {
     var expanded = false
     var selectedSort = YelpConsts.SortMode.BestMatched
     
-    func stateFromRecipe(recipe: FilterRecipe) {
+    func applyStateFromRecipe(recipe: FilterRecipe) {
         selectedSort = recipe.sort
     }
     
@@ -108,7 +108,7 @@ class SortFilterController: FilterSectionControler {
         return expanded ? YelpConsts.SortMode.asArray.count : 1
     }
     
-    func getCellForPos(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCellForPos(indexPath: NSIndexPath, switchDelegate: SettingsSwitchCellDelegate?) -> UITableViewCell {
         let cell = tableView?.dequeueReusableCellWithIdentifier(SettingsDropDownCell.id, forIndexPath: indexPath) as! SettingsDropDownCell
         if !expanded {
             cell.populate(label: selectedSort.toString(), state: SettingsDropDownCell.State.Collapsed)
@@ -141,12 +141,12 @@ class CategoryFilterController: FilterSectionControler {
     
     //state
     var expanded = false
-    var selectedCategories = NSMutableSet()
+    var selectedCategories = Set<String>()
     
-    func stateFromRecipe(recipe: FilterRecipe) {
-        selectedCategories.removeAllObjects()
+    func applyStateFromRecipe(recipe: FilterRecipe) {
+        selectedCategories.removeAll()
         for category in recipe.categories {
-            selectedCategories.addObject(category)
+            selectedCategories.insert(category)
         }
     }
     
@@ -160,15 +160,15 @@ class CategoryFilterController: FilterSectionControler {
         return !expanded && (row == minimumNumberOfVisibleCategories)
     }
     
-    func getCellForPos(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCellForPos(indexPath: NSIndexPath, switchDelegate: SettingsSwitchCellDelegate?) -> UITableViewCell {
         if isSeeAllCell(indexPath) {
             return (tableView?.dequeueReusableCellWithIdentifier("settingsSeeAll"))!
         } else {
             let cell = tableView?.dequeueReusableCellWithIdentifier(SettingsSwitchCell.id, forIndexPath: indexPath) as! SettingsSwitchCell
             let row = indexPath.row
             let categoryLabel = YelpConsts.categoryLabels[row]
-            let isOn = selectedCategories.containsObject(YelpConsts.categoryKeys[row])
-            cell.populate(label: categoryLabel, isOn: isOn)
+            let isOn = selectedCategories.contains(YelpConsts.categoryKeys[row])
+            cell.populate(label: categoryLabel, isOn: isOn, switchDelegate: switchDelegate)
             return cell
         }
     }
@@ -183,9 +183,10 @@ class CategoryFilterController: FilterSectionControler {
     func onSwitchChange(indexPath: NSIndexPath, isOn: Bool) {
         let category = YelpConsts.categoryKeys[indexPath.row]
         if isOn {
-            selectedCategories.addObject(category)
+            selectedCategories.insert(category)
         } else {
-            selectedCategories.removeObject(category)
+            selectedCategories.remove(category)
         }
+        print("Category: \(category) Value: \(isOn)")
     }
 }

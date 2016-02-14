@@ -68,6 +68,11 @@ class YelpService: BDBOAuth1RequestOperationManager {
             return self
         }
         
+        func filters(filters: FilterRecipe) -> RequestBuilder {
+            filters.apply(toRequest: self)
+            return self
+        }
+        
         func execute(onSuccess onSuccess: (SearchResults) -> Void, onFailure: () -> Void = {}) -> NetTask {
             return YelpService.sharedInstance.doRequest(self, onSuccess: onSuccess, onFailure: onFailure)
         }
