@@ -43,6 +43,18 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         return (latitude, longitude)
     }
     
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            print("Got location permission")
+            locationManager.startUpdatingLocation()
+            if let location = locationManager.location {
+                print("We have a initial fix")
+                latitude = location.coordinate.latitude
+                longitude = location.coordinate.longitude
+            }
+        }
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("We have a new fix")
         if locations.count > 0 {
