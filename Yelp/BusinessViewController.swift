@@ -39,6 +39,10 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
         performSearch()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     @IBAction func onTapOutside(sender: AnyObject) {
         searchBar.resignFirstResponder()
     }
@@ -70,6 +74,7 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
                 performSearch()
             }
         }
+        searchBar.resignFirstResponder()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -88,6 +93,12 @@ class BusinessViewController: UIViewController, UISearchBarDelegate, UITableView
                 let filtersViewController = navController.topViewController as! FilterViewController
                 filtersViewController.delegate = self
                 filtersViewController.filterRecipe = filterRecipe
+            } else if segueIdentifier == "businessDetailsRoute" {
+                let cell = sender as! UITableViewCell
+                let indexPath = tableView.indexPathForCell(cell)!
+                let selectedBusiness = dataSource.getItem(indexPath.row)
+                let detailController = segue.destinationViewController as! BusinessDetailsViewController
+                detailController.business = selectedBusiness
             }
         }
     }

@@ -32,6 +32,7 @@ struct Business: Decodable {
     var ratingImageURL: String
     var distanceMeters: Decimal?
     var categories: String
+    var mobile_url: String
     var location: Location
     var phoneNumber: String?
     var snippetImageURL: String
@@ -49,11 +50,11 @@ struct Business: Decodable {
             ratingImageURL: json ==> "rating_img_url_large",
             distanceMeters: json ==> "distance",
             categories: manuallyDecodeCategories(json!),
+            mobile_url: json ==> "mobile_url",
             location: json ==> "location",
             phoneNumber: json ==> "display_phone",
             snippetImageURL:json ==> "snippet_image_url",
             snippetText: json ==> "snippet_text"
-            
         )
     }
     

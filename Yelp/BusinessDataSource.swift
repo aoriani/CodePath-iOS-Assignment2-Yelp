@@ -45,4 +45,13 @@ class BusinessDataSource:NSObject, UITableViewDataSource {
             return tableView.dequeueReusableCellWithIdentifier("emptyErrorCell")!
         }
     }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        //TODO: Update logic if infinite scrolling is implemented
+        return items.count == 1 ? "1 result" : "\(items.count) results"
+    }
+    
+    func getItem(pos: Int) -> Business {
+        return items[pos]
+    }
 }
