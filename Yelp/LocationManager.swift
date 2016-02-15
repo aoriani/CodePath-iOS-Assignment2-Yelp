@@ -11,6 +11,8 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
+    typealias LatLon = (lat: CLLocationDegrees, lon: CLLocationDegrees)
+    
     static let sharedInstance = LocationManager()
     
     private var started = false
@@ -39,7 +41,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func getLastKnownLocation() -> (lat: CLLocationDegrees, lon: CLLocationDegrees) {
+    func getLastKnownLocation() -> LatLon {
         return (latitude, longitude)
     }
     

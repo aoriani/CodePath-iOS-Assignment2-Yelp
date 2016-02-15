@@ -9,18 +9,32 @@
 import Foundation
 import ELCodable
 
+struct Coordinates: Decodable {
+    var latitude: Decimal
+    var longitude: Decimal
+    
+    static func decode(json: JSON?) throws -> Coordinates {
+        return try Coordinates(
+            latitude: json ==> "latitude",
+            longitude: json ==> "longitude"
+        )
+    }
+}
+
 struct Location: Decodable {
     var address: [String]
     var city: String
     var state: String
     var zipCode: String
+    var coordinates: Coordinates
     
     static func decode(json: JSON?) throws -> Location {
         return try Location(
             address: json ==> "address",
             city: json ==> "city",
             state: json ==> "state_code",
-            zipCode: json ==> "postal_code"
+            zipCode: json ==> "postal_code",
+            coordinates: json ==> "coordinate"
         )
     }
 }

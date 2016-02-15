@@ -67,7 +67,7 @@ class BusinessTableCell: UITableViewCell {
     }
     
     func formatAddress(location: Location) -> String {
-        let streetAddress = location.address[0]
+        let streetAddress = location.address.isEmpty ? "" : location.address[0]
         return "\(streetAddress), \(location.city)"
     }
 }

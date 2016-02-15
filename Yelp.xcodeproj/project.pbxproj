@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8FE98F2F2E7B7F403BDD7B3A /* Pods_Yelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695BCE43C64AC23A0FF15C4E /* Pods_Yelp.framework */; };
 		9946D2DD1C7115E0000307A6 /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D2DC1C7115E0000307A6 /* BusinessDetailsViewController.swift */; };
+		9946D2E31C716D19000307A6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9946D2E21C716D19000307A6 /* MapKit.framework */; };
+		9946D2E51C718401000307A6 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D2E41C718401000307A6 /* MapAnnotation.swift */; };
 		99E66AD91C6C715B00AA35B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E66AD81C6C715B00AA35B0 /* AppDelegate.swift */; };
 		99E66ADB1C6C715B00AA35B0 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E66ADA1C6C715B00AA35B0 /* BusinessViewController.swift */; };
 		99E66ADE1C6C715B00AA35B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E66ADC1C6C715B00AA35B0 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 		695BCE43C64AC23A0FF15C4E /* Pods_Yelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D07D81FF309E3A3F10B502 /* Pods-Yelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yelp/Pods-Yelp.debug.xcconfig"; sourceTree = "<group>"; };
 		9946D2DC1C7115E0000307A6 /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
+		9946D2E21C716D19000307A6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9946D2E41C718401000307A6 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		99E66AD51C6C715B00AA35B0 /* Yelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99E66AD81C6C715B00AA35B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99E66ADA1C6C715B00AA35B0 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9946D2E31C716D19000307A6 /* MapKit.framework in Frameworks */,
 				8FE98F2F2E7B7F403BDD7B3A /* Pods_Yelp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +146,7 @@
 				99EE960B1C7054E8002CF71E /* Filter */,
 				99EE95F21C6DBD42002CF71E /* BusinessTableCell.swift */,
 				99EE95F71C6DD677002CF71E /* UIImageView+Loading.swift */,
+				9946D2E41C718401000307A6 /* MapAnnotation.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 		BB01ECE1AFA7AC0D515401C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9946D2E21C716D19000307A6 /* MapKit.framework */,
 				695BCE43C64AC23A0FF15C4E /* Pods_Yelp.framework */,
 			);
 			name = Frameworks;
@@ -236,6 +243,11 @@
 					99E66AD41C6C715B00AA35B0 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = Y7W4KP26TC;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -340,6 +352,7 @@
 				99EE95F11C6DBC1B002CF71E /* BusinessDataSource.swift in Sources */,
 				99EE96021C701900002CF71E /* UnitConversions.swift in Sources */,
 				99E66AEC1C6C77DD00AA35B0 /* YelpService.swift in Sources */,
+				9946D2E51C718401000307A6 /* MapAnnotation.swift in Sources */,
 				99EE96041C702770002CF71E /* FilterRecipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,10 +17,9 @@ class YelpService: BDBOAuth1RequestOperationManager {
     
     class RequestBuilder {
         private var parameters = [String : AnyObject]()
-        private init() {
+        private init(latlon: LocationManager.LatLon) {
             //Location is required, setting default to SF
-            let lastKnowLocation = LocationManager.sharedInstance.getLastKnownLocation()
-            parameters["ll"] = String(format: "%0.6f,%0.6f", lastKnowLocation.lat, lastKnowLocation.lon)
+            parameters["ll"] = String(format: "%0.6f,%0.6f", latlon.lat, latlon.lon)
         }
         
         func searchTerm(term: String) -> RequestBuilder {
@@ -100,8 +99,8 @@ class YelpService: BDBOAuth1RequestOperationManager {
         super.init(coder: aDecoder)
     }
     
-    func newRequest() -> RequestBuilder {
-        return RequestBuilder()
+    func newRequest(latlon: LocationManager.LatLon) -> RequestBuilder {
+        return RequestBuilder(latlon: latlon)
     }
 
     private func doRequest(request: RequestBuilder, onSuccess: (SearchResults) -> Void, onFailure: () -> Void) -> NetTask {
